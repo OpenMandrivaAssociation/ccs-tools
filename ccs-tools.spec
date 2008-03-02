@@ -7,7 +7,7 @@ Version: 1.5.3
 Release: %mkrel 1
 License: GPL
 URL:	http://tomoyo.sourceforge.jp/
-Group: System/Kernel
+Group: System/Kernel and hardware
 BuildRequires: ncurses-devel
 BuildRequires: readline-devel
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
