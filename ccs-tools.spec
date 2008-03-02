@@ -14,6 +14,7 @@ Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 #NoSource: 0
 
 Source0: http://osdn.dl.sourceforge.jp/tomoyo/27220/ccs-tools-%{ver}-%{data}.tar.gz
+Patch0: ccs-tools-dont-use-chown.patch
 
 %description
 This is TOMOYO Linux tools.
@@ -21,6 +22,7 @@ This is TOMOYO Linux tools.
 %prep
 
 %setup -q -n ccstools
+%patch0 -p1 
 
 %build
 
