@@ -17,15 +17,15 @@ Source0: http://osdn.dl.sourceforge.jp/tomoyo/27220/ccs-tools-%{ver}-%{data}.tar
 Patch0: ccs-tools-dont-use-chown.patch
 
 %description
-This is TOMOYO Linux tools.
+TOMOYO Linux is an extension for Linux to provide Mandatory Access Control
+(MAC) functions. This package contains the tools needed to configure, 
+activate and manage the TOMOYO Linux MAC system and policies.
 
 %prep
-
 %setup -q -n ccstools
 %patch0 -p1 
 
 %build
-
 %make -s all
 
 %install
