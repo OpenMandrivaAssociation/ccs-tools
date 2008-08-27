@@ -34,8 +34,9 @@ activate and manage the TOMOYO Linux MAC system and policies.
 rm -rf %{buildroot}
 %makeinstall -s INSTALLDIR=%{buildroot}
 install -m 644 %{SOURCE1} README.install.urpmi
-install -d 644 %{SOURCE2} %{buildroot}/etc/logrotate.d/tomoyo
 mkdir -p %{buildroot}/etc/ccs
+mkdir -p %{buildroot}/etc/logrotate.d/
+install -m 644 %{SOURCE2} %{buildroot}/etc/logrotate.d/tomoyo
 mkdir -p %{buildroot}/var/log/tomoyo
 
 %clean
@@ -44,6 +45,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %attr(700,root,root) /etc/ccs/
+/etc/logrotate.d/tomoyo
 %attr(700,root,root) /sbin/ccs-init
 %attr(700,root,root) /sbin/tomoyo-init
 /usr/lib/ccs/
