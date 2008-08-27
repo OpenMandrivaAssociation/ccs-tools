@@ -1,19 +1,19 @@
 Summary: TOMOYO Linux tools
-%define data 20080715
-%define ver  1.6.3
+%define  date 20080715
+%define  ver  1.6.3
 
-Name: ccs-tools
+Name: 	 ccs-tools
 Version: 1.6.3
 Release: %mkrel 1
-License: GPL
-URL:	http://tomoyo.sourceforge.jp/
-Group: System/Kernel and hardware
+License: GPLv2
+URL:	 http://tomoyo.sourceforge.jp/
+Group:	 System/Kernel and hardware
 BuildRequires: ncurses-devel
 BuildRequires: readline-devel
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 #NoSource: 0
 
-Source0: http://osdn.dl.sourceforge.jp/tomoyo/27220/ccs-tools-%{ver}-%{data}.tar.gz
+Source0: http://osdn.dl.sourceforge.jp/tomoyo/27220/ccs-tools-%{ver}-%{date}.tar.gz
 Source1: README.ccs-tools.urpmi
 Patch0:  ccs-tools-dont-use-chown.patch
 
