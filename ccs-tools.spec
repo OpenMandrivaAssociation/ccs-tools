@@ -38,10 +38,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-/sbin/ccs-init
-/sbin/tomoyo-init
+%attr(700,root,root) /sbin/ccs-init
+%attr(700,root,root) /sbin/tomoyo-init
 /usr/lib/ccs/
 %attr(4755,root,root) /usr/lib/ccs/misc/proxy
+%attr(4755,root,root) /usr/lib/ccs/misc/force-logout
 /usr/sbin/ccs-auditd
 /usr/sbin/ccs-ccstree
 /usr/sbin/ccs-checkpolicy
