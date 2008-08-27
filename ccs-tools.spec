@@ -15,6 +15,7 @@ Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 Source0: http://osdn.dl.sourceforge.jp/tomoyo/27220/ccs-tools-%{ver}-%{date}.tar.gz
 Source1: README.ccs-tools.urpmi
+Source2: tomoyo.logrotate
 Patch0:  ccs-tools-dont-use-chown.patch
 
 %description
@@ -33,6 +34,7 @@ activate and manage the TOMOYO Linux MAC system and policies.
 rm -rf %{buildroot}
 %makeinstall -s INSTALLDIR=%{buildroot}
 install -m 644 %{SOURCE1} README.install.urpmi
+install -d 644 %{SOURCE2} %{buildroot}/etc/logrotate.d/tomoyo
 mkdir -p %{buildroot}/etc/ccs
 mkdir -p %{buildroot}/var/log/tomoyo
 
