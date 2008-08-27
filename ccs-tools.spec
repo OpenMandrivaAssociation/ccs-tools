@@ -14,7 +14,8 @@ Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 #NoSource: 0
 
 Source0: http://osdn.dl.sourceforge.jp/tomoyo/27220/ccs-tools-%{ver}-%{data}.tar.gz
-Patch0: ccs-tools-dont-use-chown.patch
+Source1: README.ccs-tools.urpmi
+Patch0:  ccs-tools-dont-use-chown.patch
 
 %description
 TOMOYO Linux is an extension for Linux to provide Mandatory Access Control
@@ -31,7 +32,7 @@ activate and manage the TOMOYO Linux MAC system and policies.
 %install
 rm -rf %{buildroot}
 %makeinstall -s INSTALLDIR=%{buildroot}
-
+install -m 644 %{SOURCE1} README.install.urpmi
 %clean
 rm -rf %{buildroot}
 
@@ -78,3 +79,4 @@ rm -rf %{buildroot}
 /usr/share/man/man8/init_policy.sh.8.lzma
 /usr/share/man/man8/tomoyo-init.8.lzma
 /usr/share/man/man8/tomoyo_init_policy.sh.8.lzma
+%doc README.install.urpmi
