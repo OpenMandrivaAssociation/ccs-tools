@@ -29,12 +29,11 @@ This is TOMOYO Linux tools.
 %make -s all
 
 %install
-
+rm -rf %{buildroot}
 %makeinstall -s INSTALLDIR=%{buildroot}
 
 %clean
-
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
