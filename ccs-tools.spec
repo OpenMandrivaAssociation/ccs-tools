@@ -34,6 +34,7 @@ rm -rf %{buildroot}
 %makeinstall -s INSTALLDIR=%{buildroot}
 install -m 644 %{SOURCE1} README.install.urpmi
 mkdir -p %{buildroot}/etc/ccs
+mkdir -p %{buildroot}/var/log/tomoyo
 
 %clean
 rm -rf %{buildroot}
@@ -82,4 +83,5 @@ rm -rf %{buildroot}
 /usr/share/man/man8/init_policy.sh.8.lzma
 /usr/share/man/man8/tomoyo-init.8.lzma
 /usr/share/man/man8/tomoyo_init_policy.sh.8.lzma
+/var/log/tomoyo/
 %doc README.install.urpmi
