@@ -35,12 +35,12 @@ activate and manage the TOMOYO Linux MAC system and policies.
 rm -rf %{buildroot}
 %makeinstall -s INSTALLDIR=%{buildroot}
 install -m 644 %{SOURCE1} README.install.urpmi
-mkdir -p %{buildroot}/etc/ccs/
-mkdir -p %{buildroot}/etc/logrotate.d/
-install -m 644 %{SOURCE2} %{buildroot}/etc/logrotate.d/tomoyo
-mkdir -p %{buildroot}/etc/rc.d/init.d/
-install -m 700 %{SOURCE3} %{buildroot}/etc/rc.d/init.d/ccs-auditd
-mkdir -p %{buildroot}/var/log/tomoyo
+mkdir -p %{buildroot}%{_sysconfdir}/ccs/
+mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d/
+install -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/logrotate.d/tomoyo
+mkdir -p %{buildroot}%{_initrddir}
+install -m 700 %{SOURCE3} %{buildroot}%{_initrddir}/ccs-auditd
+mkdir -p %{buildroot}%{_logdir}/tomoyo
 
 %clean
 rm -rf %{buildroot}
@@ -53,49 +53,49 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%attr(700,root,root) /etc/ccs/
-/etc/logrotate.d/tomoyo
-%attr(700,root,root) /etc/rc.d/init.d/ccs-auditd
+%attr(700,root,root) %{_sysconfdir}/ccs/
+%{_sysconfdir}/logrotate.d/tomoyo
+%attr(700,root,root) %{_initrddir}/ccs-auditd
 %attr(700,root,root) /sbin/ccs-init
 %attr(700,root,root) /sbin/tomoyo-init
 /usr/lib/ccs/
 %attr(4755,root,root) /usr/lib/ccs/misc/proxy
 %attr(4755,root,root) /usr/lib/ccs/misc/force-logout
-/usr/sbin/ccs-auditd
-/usr/sbin/ccs-ccstree
-/usr/sbin/ccs-checkpolicy
-/usr/sbin/ccs-domainmatch
-/usr/sbin/ccs-editpolicy
-/usr/sbin/ccs-editpolicy_offline
-/usr/sbin/ccs-findtemp
-/usr/sbin/ccs-ld-watch
-/usr/sbin/ccs-loadpolicy
-/usr/sbin/ccs-pathmatch
-/usr/sbin/ccs-patternize
-/usr/sbin/ccs-queryd
-/usr/sbin/ccs-savepolicy
-/usr/sbin/ccs-setlevel
-/usr/sbin/ccs-setprofile
-/usr/sbin/ccs-sortpolicy
-/usr/share/man/man8/ccs-auditd.8.lzma
-/usr/share/man/man8/ccs-ccstree.8.lzma
-/usr/share/man/man8/ccs-checkpolicy.8.lzma
-/usr/share/man/man8/ccs-domainmatch.8.lzma
-/usr/share/man/man8/ccs-editpolicy.8.lzma
-/usr/share/man/man8/ccs-findtemp.8.lzma
-/usr/share/man/man8/ccs-init.8.lzma
-/usr/share/man/man8/ccs-ld-watch.8.lzma
-/usr/share/man/man8/ccs-loadpolicy.8.lzma
-/usr/share/man/man8/ccs-notifyd.8.lzma
-/usr/share/man/man8/ccs-pathmatch.8.lzma
-/usr/share/man/man8/ccs-patternize.8.lzma
-/usr/share/man/man8/ccs-queryd.8.lzma
-/usr/share/man/man8/ccs-savepolicy.8.lzma
-/usr/share/man/man8/ccs-setlevel.8.lzma
-/usr/share/man/man8/ccs-setprofile.8.lzma
-/usr/share/man/man8/ccs-sortpolicy.8.lzma
-/usr/share/man/man8/init_policy.sh.8.lzma
-/usr/share/man/man8/tomoyo-init.8.lzma
-/usr/share/man/man8/tomoyo_init_policy.sh.8.lzma
-/var/log/tomoyo/
+%{_sbindir}/ccs-auditd
+%{_sbindir}/ccs-ccstree
+%{_sbindir}/ccs-checkpolicy
+%{_sbindir}/ccs-domainmatch
+%{_sbindir}/ccs-editpolicy
+%{_sbindir}/ccs-editpolicy_offline
+%{_sbindir}/ccs-findtemp
+%{_sbindir}/ccs-ld-watch
+%{_sbindir}/ccs-loadpolicy
+%{_sbindir}/ccs-pathmatch
+%{_sbindir}/ccs-patternize
+%{_sbindir}/ccs-queryd
+%{_sbindir}/ccs-savepolicy
+%{_sbindir}/ccs-setlevel
+%{_sbindir}/ccs-setprofile
+%{_sbindir}/ccs-sortpolicy
+%{_mandir}/man8/ccs-auditd.8.lzma
+%{_mandir}/man8/ccs-ccstree.8.lzma
+%{_mandir}/man8/ccs-checkpolicy.8.lzma
+%{_mandir}/man8/ccs-domainmatch.8.lzma
+%{_mandir}/man8/ccs-editpolicy.8.lzma
+%{_mandir}/man8/ccs-findtemp.8.lzma
+%{_mandir}/man8/ccs-init.8.lzma
+%{_mandir}/man8/ccs-ld-watch.8.lzma
+%{_mandir}/man8/ccs-loadpolicy.8.lzma
+%{_mandir}/man8/ccs-notifyd.8.lzma
+%{_mandir}/man8/ccs-pathmatch.8.lzma
+%{_mandir}/man8/ccs-patternize.8.lzma
+%{_mandir}/man8/ccs-queryd.8.lzma
+%{_mandir}/man8/ccs-savepolicy.8.lzma
+%{_mandir}/man8/ccs-setlevel.8.lzma
+%{_mandir}/man8/ccs-setprofile.8.lzma
+%{_mandir}/man8/ccs-sortpolicy.8.lzma
+%{_mandir}/man8/init_policy.sh.8.lzma
+%{_mandir}/man8/tomoyo-init.8.lzma
+%{_mandir}/man8/tomoyo_init_policy.sh.8.lzma
+%{_logdir}/tomoyo/
 %doc README.install.urpmi
