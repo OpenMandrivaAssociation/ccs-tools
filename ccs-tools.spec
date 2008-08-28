@@ -16,6 +16,7 @@ Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0: http://osdn.dl.sourceforge.jp/tomoyo/27220/ccs-tools-%{ver}-%{date}.tar.gz
 Source1: README.ccs-tools.urpmi
 Source2: tomoyo.logrotate
+Source3: tomoyo.init
 Patch0:  ccs-tools-dont-use-chown.patch
 
 %description
@@ -34,18 +35,27 @@ activate and manage the TOMOYO Linux MAC system and policies.
 rm -rf %{buildroot}
 %makeinstall -s INSTALLDIR=%{buildroot}
 install -m 644 %{SOURCE1} README.install.urpmi
-mkdir -p %{buildroot}/etc/ccs
+mkdir -p %{buildroot}/etc/ccs/
 mkdir -p %{buildroot}/etc/logrotate.d/
 install -m 644 %{SOURCE2} %{buildroot}/etc/logrotate.d/tomoyo
+mkdir -p %{buildroot}/etc/rc.d/init.d/
+install -m 700 %{SOURCE3} %{buildroot}/etc/rc.d/init.d/ccs-auditd
 mkdir -p %{buildroot}/var/log/tomoyo
 
 %clean
 rm -rf %{buildroot}
 
+%post
+%_post_service ccs-auditd
+
+%preun
+%_preun_service ccs-auditd
+
 %files
 %defattr(-,root,root)
 %attr(700,root,root) /etc/ccs/
 /etc/logrotate.d/tomoyo
+%attr(700,root,root) /etc/rc.d/init.d/ccs-auditd
 %attr(700,root,root) /sbin/ccs-init
 %attr(700,root,root) /sbin/tomoyo-init
 /usr/lib/ccs/
