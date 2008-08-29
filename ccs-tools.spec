@@ -4,7 +4,7 @@ Summary: TOMOYO Linux tools
 
 Name: 	 ccs-tools
 Version: 1.6.3
-Release: %manbo_mkrel 2
+Release: %manbo_mkrel 3
 License: GPLv2
 URL:	 http://tomoyo.sourceforge.jp/
 Group:	 System/Kernel and hardware
@@ -35,7 +35,6 @@ activate and manage the TOMOYO Linux MAC system and policies.
 rm -rf %{buildroot}
 %makeinstall -s INSTALLDIR=%{buildroot}
 install -m 644 %{SOURCE1} README.install.urpmi
-mkdir -p %{buildroot}%{_sysconfdir}/ccs/
 mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d/
 install -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/logrotate.d/tomoyo
 mkdir -p %{buildroot}%{_initrddir}
@@ -53,7 +52,6 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%attr(700,root,root) %{_sysconfdir}/ccs/
 %{_sysconfdir}/logrotate.d/tomoyo
 %attr(700,root,root) %{_initrddir}/ccs-auditd
 %attr(700,root,root) /sbin/ccs-init
