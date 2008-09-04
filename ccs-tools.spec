@@ -1,10 +1,10 @@
 Summary: TOMOYO Linux tools
-%define  date 20080715
-%define  ver  1.6.3
+%define  date 20080903
+%define  ver  1.6.4
 
 Name: 	 ccs-tools
-Version: 1.6.3
-Release: %manbo_mkrel 4
+Version: %{ver}
+Release: %manbo_mkrel 1
 License: GPLv2
 URL:	 http://tomoyo.sourceforge.jp/
 Group:	 System/Kernel and hardware
