@@ -1,6 +1,6 @@
 Summary: TOMOYO Linux tools
-%define  date 20080903
-%define  ver  1.6.4
+%define  date 20090202
+%define  ver  1.6.6
 
 Name: 	 ccs-tools
 Version: %{ver}
