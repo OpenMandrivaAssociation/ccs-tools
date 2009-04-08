@@ -1,10 +1,10 @@
 Summary: TOMOYO Linux tools
-%define  date 20090202
-%define  ver  1.6.6
+%define  date 20090401
+%define  ver  1.6.7
 
 Name: 	 ccs-tools
 Version: %{ver}
-Release: %manbo_mkrel 2
+Release: %manbo_mkrel 1
 License: GPLv2
 URL:	 http://tomoyo.sourceforge.jp/
 Group:	 System/Kernel and hardware
@@ -64,7 +64,6 @@ rm -rf %{buildroot}
 %{_sbindir}/ccs-checkpolicy
 %{_sbindir}/ccs-domainmatch
 %{_sbindir}/ccs-editpolicy
-%{_sbindir}/ccs-editpolicy_offline
 %{_sbindir}/ccs-findtemp
 %{_sbindir}/ccs-ld-watch
 %{_sbindir}/ccs-loadpolicy
@@ -75,25 +74,26 @@ rm -rf %{buildroot}
 %{_sbindir}/ccs-setlevel
 %{_sbindir}/ccs-setprofile
 %{_sbindir}/ccs-sortpolicy
-%{_mandir}/man8/ccs-auditd.8.lzma
-%{_mandir}/man8/ccs-ccstree.8.lzma
-%{_mandir}/man8/ccs-checkpolicy.8.lzma
-%{_mandir}/man8/ccs-domainmatch.8.lzma
-%{_mandir}/man8/ccs-editpolicy.8.lzma
-%{_mandir}/man8/ccs-findtemp.8.lzma
-%{_mandir}/man8/ccs-init.8.lzma
-%{_mandir}/man8/ccs-ld-watch.8.lzma
-%{_mandir}/man8/ccs-loadpolicy.8.lzma
-%{_mandir}/man8/ccs-notifyd.8.lzma
-%{_mandir}/man8/ccs-pathmatch.8.lzma
-%{_mandir}/man8/ccs-patternize.8.lzma
-%{_mandir}/man8/ccs-queryd.8.lzma
-%{_mandir}/man8/ccs-savepolicy.8.lzma
-%{_mandir}/man8/ccs-setlevel.8.lzma
-%{_mandir}/man8/ccs-setprofile.8.lzma
-%{_mandir}/man8/ccs-sortpolicy.8.lzma
-%{_mandir}/man8/init_policy.sh.8.lzma
-%{_mandir}/man8/tomoyo-init.8.lzma
-%{_mandir}/man8/tomoyo_init_policy.sh.8.lzma
+%{_mandir}/man8/ccs-auditd.8*
+%{_mandir}/man8/ccs-ccstree.8*
+%{_mandir}/man8/ccs-checkpolicy.8*
+%{_mandir}/man8/ccs-domainmatch.8*
+%{_mandir}/man8/ccs-editpolicy.8*
+%{_mandir}/man8/ccs-editpolicy-agent.8*
+%{_mandir}/man8/ccs-findtemp.8*
+%{_mandir}/man8/ccs-init.8*
+%{_mandir}/man8/ccs-ld-watch.8*
+%{_mandir}/man8/ccs-loadpolicy.8*
+%{_mandir}/man8/ccs-notifyd.8*
+%{_mandir}/man8/ccs-pathmatch.8*
+%{_mandir}/man8/ccs-patternize.8*
+%{_mandir}/man8/ccs-queryd.8*
+%{_mandir}/man8/ccs-savepolicy.8*
+%{_mandir}/man8/ccs-setlevel.8*
+%{_mandir}/man8/ccs-setprofile.8*
+%{_mandir}/man8/ccs-sortpolicy.8*
+%{_mandir}/man8/init_policy.sh.8*
+%{_mandir}/man8/tomoyo-init.8*
+%{_mandir}/man8/tomoyo_init_policy.sh.8*
 %{_logdir}/tomoyo/
 %doc README.install.urpmi
