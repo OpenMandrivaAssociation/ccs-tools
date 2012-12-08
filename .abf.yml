@@ -1,5 +1,2 @@
 sources:
-  "ccs-tools-1.6.8-20090528.tar.gz:"	c1c96a982acf6e2a8a6d607825622fb434386c43
-  "README.ccs-tools.urpmi:"	e72efc039e5c2e844906cc0f66eff45de60ff648
-  "tomoyo.init:"	70c0feafe804b40a6f74414ca28cdde06acf4ab0
-  "tomoyo.logrotate:"	7b8d631bf55844b5d2f9ba5a04cd521d0a39a6ad
+  "ccs-tools-1.6.8-20090528.tar.gz": c1c96a982acf6e2a8a6d607825622fb434386c43

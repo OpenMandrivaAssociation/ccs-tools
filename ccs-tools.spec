@@ -4,7 +4,7 @@ Summary: TOMOYO Linux tools
 
 Name: 	 ccs-tools
 Version: %{ver}
-Release: %manbo_mkrel 3
+Release: %manbo_mkrel 5
 License: GPLv2
 URL:	 http://tomoyo.sourceforge.jp/
 Group:	 System/Kernel and hardware
@@ -56,9 +56,7 @@ rm -rf %{buildroot}
 %attr(700,root,root) %{_initrddir}/ccs-auditd
 %attr(700,root,root) /sbin/ccs-init
 %attr(700,root,root) /sbin/tomoyo-init
-/usr/lib/ccs/
-%attr(4755,root,root) /usr/lib/ccs/misc/proxy
-%attr(4755,root,root) /usr/lib/ccs/misc/force-logout
+%{_exec_prefix}/lib/ccs/
 %{_sbindir}/ccs-auditd
 %{_sbindir}/ccs-ccstree
 %{_sbindir}/ccs-checkpolicy
@@ -97,3 +95,72 @@ rm -rf %{buildroot}
 %{_mandir}/man8/tomoyo_init_policy.sh.8*
 %{_logdir}/tomoyo/
 %doc README.install.urpmi
+
+
+%changelog
+* Tue May 03 2011 Oden Eriksson <oeriksson@mandriva.com> 1.6.8-3mnb2
++ Revision: 663355
+- mass rebuild
+
+* Mon Jun 22 2009 Herton Ronaldo Krzesinski <herton@mandriva.com.br> 1.6.8-2mnb2
++ Revision: 388063
+- Updated README.ccs-tools.urpmi to reference tomoyo 2.2.x which is the
+  current used choice in kernel packages.
+
+* Mon Jun 22 2009 Herton Ronaldo Krzesinski <herton@mandriva.com.br> 1.6.8-1mnb2
++ Revision: 388044
+- Updated to version 1.6.8-20090528
+
+* Wed Apr 08 2009 Herton Ronaldo Krzesinski <herton@mandriva.com.br> 1.6.7-1mnb2
++ Revision: 365157
+- Updated to 1.6.7-20090401 (to match latest kernel released).
+- Rediffed ccs-tools-dont-use-chown.patch
+
+* Wed Feb 25 2009 Thierry Vignaud <tv@mandriva.org> 1.6.6-2mnb2
++ Revision: 344800
+- rebuild for new libreadline
+
+* Tue Feb 17 2009 Herton Ronaldo Krzesinski <herton@mandriva.com.br> 1.6.6-1mnb2
++ Revision: 342211
+- Updated to 1.6.6-20090202
+
+* Thu Sep 04 2008 Thomas Backlund <tmb@mandriva.org> 1.6.4-1mnb2
++ Revision: 280961
+- update to 1.6.4 final
+- update README.urpmi to point to the online kickstart page
+
+* Fri Aug 29 2008 Thomas Backlund <tmb@mandriva.org> 1.6.3-3mnb2
++ Revision: 277292
+- remove /etc/ccs from rpm for now as it triggers /sbin/ccs-init to start
+
+* Thu Aug 28 2008 Thomas Backlund <tmb@mandriva.org> 1.6.3-2mnb2
++ Revision: 276867
+- switch to Manbo Core release tags
+- use rpm macros
+- add initscript for ccs-auditd logging daemon
+- fix logrotate install
+- add logrotate support
+- add /var/log/tomoyo/ to the rpm
+- add /etc/ccs to the rpm
+- spec fixes
+- fix license
+- add README.install.urpmi for some important info
+- update description
+- fix cleaning of buildroot
+- fix permissions
+
+* Mon Aug 04 2008 Thomas Backlund <tmb@mandriva.org> 1.6.3-1mdv2009.0
++ Revision: 263589
+- update to 1.6.3
+
+* Wed Jul 23 2008 Thierry Vignaud <tv@mandriva.org> 1.5.3-3mdv2009.0
++ Revision: 243443
+- rebuild
+
+* Sun Mar 02 2008 Thomas Backlund <tmb@mandriva.org> 1.5.3-1mdv2008.1
++ Revision: 177623
+- fix group
+- fix build as non-root
+- import ccs-tools 1.53, initial spec from TL adapted for mdv
+- Created package structure for ccs-tools.
+

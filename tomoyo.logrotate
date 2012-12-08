@@ -1,0 +1,18 @@
+#
+# the grant log is usually not used, so no need to rotate it by default
+#
+#/var/log/tomoyo/grant_log.conf {
+#    weekly
+#    rotate 9
+#    missingok
+#    notifempty
+#    nocreate
+#} 
+
+/var/log/tomoyo/reject_log.conf {
+    weekly
+    rotate 9
+    missingok
+    notifempty
+    nocreate
+} 

@@ -1,0 +1,15 @@
+When you install ccs-tools it will automatically enable TomoyoLinux
+MAC in the Manbo Core kernel. 
+
+You need to run /usr/lib/ccs/tomoyo_init_policy.sh to populate/init
+tomoyo configuration files at /etc/tomoyo, for latest Tomoyo 2.2.0 that
+was merged in kernel 2.6.30 (/usr/lib/ccs/init_policy.sh is for kernels
+with Tomoyo 1.6.x).
+
+Running the above script can take several minutes, as it scans the
+complete filesystem in order to set up an initial policy.
+
+We suggest that you read the online kickstart manual:
+http://tomoyo.sourceforge.jp/en/2.2.x/
+
+to get a better understanding of the system.
