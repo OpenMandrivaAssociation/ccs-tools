@@ -7,7 +7,7 @@ Release:	5
 License:	GPLv2
 Group:		System/Kernel and hardware
 Url:		http://tomoyo.sourceforge.jp/
-Source0:	http://osdn.dl.sourceforge.jp/tomoyo/27220/%{name}-%{ver}-%{date}.tar.gz
+Source0:	http://osdn.dl.sourceforge.jp/tomoyo/27220/%{name}-%{version}-%{date}.tar.gz
 Source1:	README.ccs-tools.urpmi
 Source2:	tomoyo.logrotate
 Source3:	tomoyo.init
