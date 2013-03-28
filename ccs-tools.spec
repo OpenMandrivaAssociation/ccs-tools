@@ -3,7 +3,7 @@
 Summary:	TOMOYO Linux tools
 Name:		ccs-tools
 Version:	1.6.8
-Release:	5
+Release:	6
 License:	GPLv2
 Group:		System/Kernel and hardware
 Url:		http://tomoyo.sourceforge.jp/
@@ -12,9 +12,9 @@ Source1:	README.ccs-tools.urpmi
 Source2:	tomoyo.logrotate
 Source3:	tomoyo.init
 Patch0:		ccs-tools-dont-use-chown.patch
-
 BuildRequires:	readline-devel
 BuildRequires:	pkgconfig(ncurses)
+Requires(pre,post):	rpm-helper
 
 %description
 TOMOYO Linux is an extension for Linux to provide Mandatory Access Control
@@ -24,8 +24,10 @@ activate and manage the TOMOYO Linux MAC system and policies.
 %prep
 %setup -qn ccstools
 %apply_patches
+sed -i s,"CFLAGS=","CFLAGS?=",g Makefile
 
 %build
+%setup_compile_flags
 %make -s all
 
 %install
