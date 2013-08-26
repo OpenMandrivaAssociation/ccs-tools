@@ -1,8 +1,11 @@
-%define  date 20090528
+%define  date	20130406
+
+%define major	3
+%define libname %mklibname ccstools %{major}
 
 Summary:	TOMOYO Linux tools
 Name:		ccs-tools
-Version:	1.6.8
+Version:	1.8.3
 Release:	6
 License:	GPLv2
 Group:		System/Kernel and hardware
@@ -10,8 +13,7 @@ Url:		http://tomoyo.sourceforge.jp/
 Source0:	http://osdn.dl.sourceforge.jp/tomoyo/27220/%{name}-%{version}-%{date}.tar.gz
 Source1:	README.ccs-tools.urpmi
 Source2:	tomoyo.logrotate
-Source3:	tomoyo.init
-Patch0:		ccs-tools-dont-use-chown.patch
+Source3:	tomoyo.service
 BuildRequires:	readline-devel
 BuildRequires:	pkgconfig(ncurses)
 Requires(pre,post):	rpm-helper
@@ -21,12 +23,28 @@ TOMOYO Linux is an extension for Linux to provide Mandatory Access Control
 (MAC) functions. This package contains the tools needed to configure, 
 activate and manage the TOMOYO Linux MAC system and policies.
 
+
+%package -n %{libname}
+Summary:    TOMOYO Linux libraries
+Group:      System/Libraries
+
+%description -n %{libname}
+TOMOYO Linux is an extension for Linux to provide Mandatory Access Control
+(MAC) functions. This package contains the tools needed to configure, 
+activate and manage the TOMOYO Linux MAC system and policies.
+
+
 %prep
-%setup -qn ccstools
+%setup -qn %{name}
 %apply_patches
-sed -i s,"CFLAGS=","CFLAGS?=",g Makefile
 
 %build
+sed -i \
+	-e "s:gcc:%{__cc}:" \
+	-e "s/\(CFLAGS.*:=\).*/\1 %{optflags}/" \
+	-e "s:/usr/lib:%{_libdir}:g" \
+	Include.make
+
 %setup_compile_flags
 %make -s all
 
@@ -35,8 +53,8 @@ sed -i s,"CFLAGS=","CFLAGS?=",g Makefile
 install -m 644 %{SOURCE1} README.install.urpmi
 mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d/
 install -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/logrotate.d/tomoyo
-mkdir -p %{buildroot}%{_initrddir}
-install -m 700 %{SOURCE3} %{buildroot}%{_initrddir}/ccs-auditd
+mkdir -p %{buildroot}%{_unitdir}
+install -m 700 %{SOURCE3} %{buildroot}%{_unitdir}/ccs-auditd.service
 mkdir -p %{buildroot}%{_logdir}/tomoyo
 
 %post
@@ -45,48 +63,15 @@ mkdir -p %{buildroot}%{_logdir}/tomoyo
 %preun
 %_preun_service ccs-auditd
 
+%files -n %{libname}
+%{_libdir}/libccstools.so.%{major}*
+
 %files
 %doc README.install.urpmi
 %{_sysconfdir}/logrotate.d/tomoyo
-%attr(700,root,root) %{_initrddir}/ccs-auditd
+%attr(700,root,root) %{_unitdir}/ccs-auditd.service
 %attr(700,root,root) /sbin/ccs-init
-%attr(700,root,root) /sbin/tomoyo-init
-%{_exec_prefix}/lib/ccs/
-%{_sbindir}/ccs-auditd
-%{_sbindir}/ccs-ccstree
-%{_sbindir}/ccs-checkpolicy
-%{_sbindir}/ccs-domainmatch
-%{_sbindir}/ccs-editpolicy
-%{_sbindir}/ccs-findtemp
-%{_sbindir}/ccs-ld-watch
-%{_sbindir}/ccs-loadpolicy
-%{_sbindir}/ccs-pathmatch
-%{_sbindir}/ccs-patternize
-%{_sbindir}/ccs-queryd
-%{_sbindir}/ccs-savepolicy
-%{_sbindir}/ccs-setlevel
-%{_sbindir}/ccs-setprofile
-%{_sbindir}/ccs-sortpolicy
-%{_mandir}/man8/ccs-auditd.8*
-%{_mandir}/man8/ccs-ccstree.8*
-%{_mandir}/man8/ccs-checkpolicy.8*
-%{_mandir}/man8/ccs-domainmatch.8*
-%{_mandir}/man8/ccs-editpolicy.8*
-%{_mandir}/man8/ccs-editpolicy-agent.8*
-%{_mandir}/man8/ccs-findtemp.8*
-%{_mandir}/man8/ccs-init.8*
-%{_mandir}/man8/ccs-ld-watch.8*
-%{_mandir}/man8/ccs-loadpolicy.8*
-%{_mandir}/man8/ccs-notifyd.8*
-%{_mandir}/man8/ccs-pathmatch.8*
-%{_mandir}/man8/ccs-patternize.8*
-%{_mandir}/man8/ccs-queryd.8*
-%{_mandir}/man8/ccs-savepolicy.8*
-%{_mandir}/man8/ccs-setlevel.8*
-%{_mandir}/man8/ccs-setprofile.8*
-%{_mandir}/man8/ccs-sortpolicy.8*
-%{_mandir}/man8/init_policy.sh.8*
-%{_mandir}/man8/tomoyo-init.8*
-%{_mandir}/man8/tomoyo_init_policy.sh.8*
+%{_libdir}/ccs/
+%{_sbindir}/ccs-*
+%{_mandir}/man8/ccs*
 %{_logdir}/tomoyo/
-

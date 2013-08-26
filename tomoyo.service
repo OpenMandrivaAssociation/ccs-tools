@@ -1,0 +1,12 @@
+[Unit]
+Description=TOMOYO Linux is a Mandatory Access Control
+Requires=tomoyo.socket
+After=syslog.target network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/ccs-auditd /dev/null /var/log/tomoyo/reject_log.conf
+
+[Install]
+WantedBy=multi-user.target
+Also=rpcbind.socket
