@@ -6,7 +6,7 @@
 Summary:	TOMOYO Linux tools
 Name:		ccs-tools
 Version:	1.8.3
-Release:	14
+Release:	15
 License:	GPLv2
 Group:		System/Kernel and hardware
 Url:		http://tomoyo.sourceforge.jp/
