@@ -36,7 +36,7 @@ activate and manage the TOMOYO Linux MAC system and policies.
 
 %prep
 %setup -qn %{name}
-%apply_patches
+%autopatch -p1
 
 %build
 sed -i \
