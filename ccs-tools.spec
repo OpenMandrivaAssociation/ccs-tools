@@ -9,7 +9,7 @@ Version:	1.8.3
 Release:	17
 License:	GPLv2
 Group:		System/Kernel and hardware
-Url:		http://tomoyo.sourceforge.jp/
+Url:		https://tomoyo.sourceforge.jp/
 Source0:	http://osdn.dl.sourceforge.jp/tomoyo/27220/%{name}-%{version}-%{date}.tar.gz
 Source1:	README.ccs-tools.urpmi
 Source2:	tomoyo.logrotate
