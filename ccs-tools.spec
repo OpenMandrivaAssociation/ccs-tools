@@ -14,6 +14,7 @@ Source0:	http://osdn.dl.sourceforge.jp/tomoyo/27220/%{name}-%{version}-%{date}.t
 Source1:	README.ccs-tools.urpmi
 Source2:	tomoyo.logrotate
 Source3:	tomoyo.service
+BuildRequires:	make
 BuildRequires:	readline-devel
 BuildRequires:	pkgconfig(ncurses)
 Requires(pre,post):	rpm-helper
